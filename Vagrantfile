@@ -19,6 +19,7 @@ server_cpus            = "1"
 server_memory          = "1024"
 server_swap            = "2048"
 server_timezone        = "Europe/Bucharest"
+public_folder          = "/vagrant"
 
 # PHP Settings
 php_version            = "5.6"
@@ -74,8 +75,7 @@ sphinxsearch_version  = "rel22" # rel20, rel21, rel22, beta, daily, stable
 ########################################################################################################################
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "trusty64"
-  config.vm.box_url = "http://files.vagrantup.com/trusty64.box"
+  config.vm.box = "ubuntu/trusty64"
 
   if Vagrant.has_plugin?("vagrant-hostmanager")
     config.hostmanager.enabled = true
@@ -148,7 +148,7 @@ Vagrant.configure("2") do |config|
   # config.vm.provision "shell", path: "#{github_url}/scripts/nginx.sh", args: [server_ip, public_folder, hostname, github_url]
 
   # Provision PHP
-  config.vm.provision "shell", path: "#{github_url}/scripts/php.sh", args: [php_timezone, hhvm, php_version]
+  config.vm.provision "shell", path: "#{github_url}/scripts/php.sh", args: [server_timezone, hhvm, php_version]
 
   # Provision MariaDB
   config.vm.provision "shell", path: "#{github_url}/scripts/mariadb.sh", args: [mysql_root_password, mysql_enable_remote]
