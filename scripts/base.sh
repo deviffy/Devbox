@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -x
 
 echo "Setting Timezone & Locale to $3 & C.UTF-8"
 
