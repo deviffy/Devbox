@@ -101,10 +101,11 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 27017, host: 27017
 
   # Config shared folder
-  config.vm.synced_folder ".", "/vagrant",
-            id: "core",
-            :nfs => false,
-            :mount_options => ['nolock,vers=3,udp,noatime']
+  config.vm.synced_folder ".", "/vagrant"
+  #  config.vm.synced_folder ".", "/vagrant",
+  #          id: "core",
+  #          :nfs => false,
+  #          :mount_options => ['nolock,vers=3,udp,noatime']
 
   # If using VirtualBox
   config.vm.provider :virtualbox do |vb|
@@ -123,10 +124,10 @@ Vagrant.configure("2") do |config|
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
 
-    config.cache.synced_folder_opts = {
-        type: :nfs,
-        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
-    }
+#    config.cache.synced_folder_opts = {
+#        type: :nfs,
+#        mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+#    }
   end
 
   # Provision Base Packages
